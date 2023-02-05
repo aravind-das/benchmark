@@ -14,7 +14,6 @@ public class InsertionSortBenchmark {
             arr[i] = ((int) (Math.random() * (max - min + 1) + min) );
         }
 
-//        return (Integer[]) Arrays.stream(arr).distinct().toArray();
         return arr;
     }
 
