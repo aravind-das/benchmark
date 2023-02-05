@@ -17,14 +17,14 @@ public class InsertionSortBenchmark {
         return arr;
     }
 
-    class BenchmarkDataGenerator {
+    class BenchmarkUtil {
         private Integer[] arr;
         private Benchmark_Timer<Integer[]> b;
         private final TimeLogger[] timeLoggers = {
                 new TimeLogger("Raw time per run (mSec): ", (time, n) -> time)
         };
 
-        BenchmarkDataGenerator(Integer[] arr, String description) {
+        BenchmarkUtil(Integer[] arr, String description) {
             this.arr = arr;
             this.b = new Benchmark_Timer<>(
                     description,
@@ -55,8 +55,8 @@ public class InsertionSortBenchmark {
         for (int n = START_N; n <= END_N; n *= 2) {
             Integer[] testArray = generateRandomArray(n, VAL_START, VAL_END);
 
-            BenchmarkDataGenerator b = new InsertionSortBenchmark()
-                    .new BenchmarkDataGenerator(testArray, "Random Array of size " + n);
+            BenchmarkUtil b = new InsertionSortBenchmark()
+                    .new BenchmarkUtil(testArray, "Random Array of size " + n);
 
             double time1 = b.runBenchmark(RUNS);
 
@@ -65,7 +65,7 @@ public class InsertionSortBenchmark {
             Arrays.sort(testArray,0 , n/2);
 
             b = new InsertionSortBenchmark()
-                    .new BenchmarkDataGenerator(testArray, "Partially Sorted Array of size " + n);
+                    .new BenchmarkUtil(testArray, "Partially Sorted Array of size " + n);
 
             double time2 = b.runBenchmark(RUNS);
 
@@ -74,7 +74,7 @@ public class InsertionSortBenchmark {
             Arrays.sort(testArray);
 
             b = new InsertionSortBenchmark()
-                    .new BenchmarkDataGenerator(testArray, "Sorted Array of size " + n);
+                    .new BenchmarkUtil(testArray, "Sorted Array of size " + n);
 
             double time3 = b.runBenchmark(RUNS);
 
@@ -83,7 +83,7 @@ public class InsertionSortBenchmark {
             Arrays.sort(testArray, Collections.reverseOrder());
 
             b = new InsertionSortBenchmark()
-                    .new BenchmarkDataGenerator(testArray, "Reverse Sorted Array of size " + n);
+                    .new BenchmarkUtil(testArray, "Reverse Sorted Array of size " + n);
 
             double time4 = b.runBenchmark(RUNS);
 
